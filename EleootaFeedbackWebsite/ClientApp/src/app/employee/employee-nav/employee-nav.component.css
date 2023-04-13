@@ -1,0 +1,34 @@
+
+.nav-img {
+    width: 80px !important;
+  
+  }
+  .navclass{
+    background-color: #198754;
+    color:white;
+  }
+  .menu-color{
+    color: white;
+  }
+  .logoutico{
+    font-size: 40px;
+    color: white;
+  }
+  .btn-outline-success{
+    color: white!important;
+    border-color: #198754;
+  }
+  .elehead{
+    font-weight: 600;
+  }
+  @media screen and (min-width: 250px) and (max-width: 600px) {
+    .companyname{
+      text-align: center;
+    }
+    .todaydatetime{
+      display: none;
+    }
+    .buttonfloat{
+      float: right;
+    }
+  }

@@ -1,0 +1,34 @@
+.nav-img {
+    width: 80px !important;
+}
+.eleoota-head{
+    font-weight: 600;
+}
+.menu-color{
+    color: white;
+}
+.logoutico{
+    font-size: 40px;
+    color: white;
+}
+.navclass{
+    background-color: #198754;
+    color: white;
+    box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+}
+.btn-outline-white{
+    color: white;
+}
+@media only screen and (min-width: 250px) and (max-width: 600px) {
+.textdate{
+   display: none;
+}
+.buttonfloat{
+    float: right;
+}
+}
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+    .buttonfloat{
+      float: right;
+    }
+  }

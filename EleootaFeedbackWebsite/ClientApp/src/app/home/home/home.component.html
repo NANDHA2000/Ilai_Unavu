@@ -1,0 +1,199 @@
+<app-home-nav></app-home-nav>
+<div class="background">
+    <div class="container-fuild content pt-3">
+        <div class="row">
+            <form #menuForm>
+                <div class="daybtn text-capitalize text-center">
+                    <!-- <select  class="dropbtn text-capitalize" (change)="getWeekdayName($event)">
+          <option [ngValue]="null" disabled selected="selected">Select Day</option>
+          <option  *ngFor="let item of menuDays;let id=index" value="{{item}}"  >{{item}}</option>
+      </select> -->
+                    {{ day }}
+                </div>
+                <div class="daybtn text-center">
+                    {{today | date:"dd-MMM-yyyy"}}
+                </div>
+            </form>
+
+
+            <div class="col-md-6">
+                <div class="radiobody py-5">
+                    <div class="form-check form-check-inline ps-5">
+                        <input ng-model="result" class="form-check-input btn-color" type="radio" name="breakfast"
+                            id="inlineRadio1" value="breakfast" checked (click)="getFoodDetails($event)">
+                        <label class="form-check-label" for="inlineRadio1">Breakfast</label>
+                    </div>
+                    <div class="form-check form-check-inline ps-5">
+                        <input ng-model="result" class="form-check-input" type="radio" name="breakfast"
+                            id="inlineRadio2" value="lunch" (click)="getFoodDetails($event)">
+                        <label class="form-check-label" for="inlineRadio2">Lunch</label>
+                    </div>
+                    <div class="form-check form-check-inline ps-5">
+                        <input ng-model="result" class="form-check-input" type="radio" name="breakfast"
+                            id="inlineRadio3" value="snacks" (click)="getFoodDetails($event)">
+                        <label class="form-check-label" for="inlineRadio3">Potluck</label>
+                    </div>
+                    <div class="form-check form-check-inline ps-5">
+                        <input ng-model="result" class="form-check-input" type="radio" name="breakfast"
+                            id="inlineRadio4" value="dinner" (click)="getFoodDetails($event)">
+                        <label class="form-check-label" for="inlineRadio4">Dinner</label>
+                    </div>
+                </div>
+
+                <div class="container-fluid table-responsive fixTableHead">
+                    <table class="table table-striped table-hover bg-white">
+                        <thead>
+                            <tr>
+                                <!-- <th scope="col">Employee Id</th> -->
+                                <th scope="col" class="text-center colone-width"><span class="colorstar"> * </span>Menu
+                                </th>
+                                <th scope="col" class="subcol-width">Excellent</th>
+                                <th scope="col" class="subcol-width">Satisfied</th>
+                                <th scope="col" class="subcol-width">Need Improvement</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of foodMenuList; let i=index">
+
+                                <td>
+                                    {{item.dish}}
+                                </td>
+
+
+                                <td class=""> <span class=""><button class="btn btn-outline"
+                                            (click)="selectFeedBack(item,'excellent')"><img class="emoji"
+                                                src="../../../assets/login/heartemoji.png"><span>
+                                                <i
+                                                    [ngClass]="item.selectedRating =='excellent' ? 'ri-check-fill ticksize' :'' "></i></span></button>
+                                    </span>
+                                </td>
+                                <td class="">
+                                    <span class=""><button class="btn btn-outline"
+                                            (click)="selectFeedBack(item,'satisified')"><img class="emoji"
+                                                src="../../../assets/login/likeemoji.png"><span>
+                                                <i
+                                                    [ngClass]="item.selectedRating =='satisified' ? 'ri-check-fill ticksize' :'' "></i></span></button>
+                                    </span>
+
+                                </td>
+                                <td class=""><span class=""><button class="btn btn-outline"
+                                            (click)="selectFeedBack(item,'need_improvement')"><img class="emoji"
+                                                src="../../../assets/login/bademoji.png"><span>
+                                                <i
+                                                    [ngClass]="item.selectedRating =='need_improvement' ? 'ri-check-fill ticksize' :'' "></i>
+                                            </span></button>
+                                    </span>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-md-6 feedback-form">
+                <form [formGroup]="feedbackForm">
+                    <h3 class="feedbackhead">Ele Oota Feedback Puts You Incharge Of Your Daily Office Food!!!!.....</h3>
+
+                    <div class="">
+                        <div class="form-floating mb-3 mt-4 input-box">
+                            <input type="name" formControlName="name" (keyup)="validation()" class="form-control" name="name"
+                                placeholder="name" />
+                            <label class="required" for="floatingInput">Name</label>
+                            <span class="text-danger" style="color: red;" *ngIf="name && name.invalid && name.touched ">
+                                Enter your name
+                            </span>
+                        </div>
+                        <div class="form-floating mb-3 input-box">
+                            <input type="email" formControlName="email"  class="form-control"
+                                name="email"
+                                (keyup)="validation('Email')"
+                                pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+                                placeholder="name@example.com" />
+                            <label class="required" for="floatingInput">Email address</label>
+                            <span class="text-danger" style="color: red;"
+                                *ngIf="email && email?.errors && email.touched && !specialCharacter">
+                                Please enter valid email
+                            </span>
+                            <span class="text-danger" style="color: red;"
+                                *ngIf="specialCharacter && email" >
+                                 Sorry, only letters (a-z), numbers (0-9), and characters ( . - _ ) are allowed.
+                            </span>
+                            
+                            <span class="text-danger" style="color: red;"
+                                *ngIf="!emailNotValid && email?.status =='VALID' && !specialCharacter">
+                                Please check the domain  
+                            </span>
+                        </div>
+                        <div class="form-floating mb-3 input-box">
+                            <input maxlength="10" formControlName="mobile" minlength="10" type="text" (keyup)="validation()" required
+                                placeholder="Mobile Number" class="form-control" name="mobile" required numbersOnly />
+                            <label class="required" for="floatingPassword">Mobile Number</label>
+                            <span class="text-danger" style="color: red;" *ngIf="
+                  mobile && mobile.invalid && mobile.touched
+                  ">
+                                Enter valid phone number
+                            </span>
+                        </div>
+                        <div class="form-floating mb-3 input-box">
+                            <input type="name" formControlName="company" (keyup)="validation()" class="form-control" name="company"
+                                placeholder="name" />
+                            <label class="required" for="floatingPassword">Company</label>
+                            <span class="text-danger" style="color: red;"
+                                *ngIf="company && company.invalid && company.touched ">
+                                Company name required
+                            </span>
+                        </div>
+
+                        <div class="form-floating mb-3 input-box">
+                            <input type="name" formControlName="feedback" (keyup)="validation()" class="form-control" name="feedback"
+                                placeholder="name" />
+                            <label class="required" for="floatingPassword">Comments</label>
+                            <span class="text-danger" style="color: red;"
+                                *ngIf="feedback && feedback.invalid && feedback.touched">
+                                Feedback is mandatory
+                            </span>
+                        </div>
+                        <!-- <button type="button" class="btn btn-primary submit-btn mx-auto">
+                  <span>Submit</span>
+              </button> -->
+                        <div>
+                            <p class="para-border">*Rating selection is mandatory.</p>
+                        </div>
+
+                        <div class="buttondiv">
+                            <button type="button" class="btn btn-primary submit-btn mx-auto" data-bs-toggle="modal"
+                                data-bs-target="#exampleModalDelete"  [disabled]="!isSubmit"
+                                (click)="
+                sendFeedBackMail(feedbackForm.value);">
+                                submit
+                            </button>
+                        </div>
+
+                    </div>
+                </form>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Company Delete Confirmation Modal -->
+
+<div class="modal fade" id="exampleModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <p class="modalpop"> Successfully Submitted </p>
+
+            <div class=" text-center p-2">
+                <button type="button" class="btn btn-danger me-3" data-bs-dismiss="modal" (click)="reloadPage()">
+                    Close
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>

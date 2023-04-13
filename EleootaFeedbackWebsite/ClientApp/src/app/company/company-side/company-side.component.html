@@ -1,0 +1,27 @@
+<div class="col-2 navbar-color p-0 position-fixed">
+    <div class="d-block flex-column align-items-center align-items-sm-start text-white min-vh-100">
+        <h5 class="text-center py-2 company-size">Company Panel</h5>
+      <ul class="d-block nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+        <li class="nav-item bg-color-box box-gap">
+          <a routerLink="/company" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link align-middle px-0 bg-color bg-color-txt">
+            <i class="ri-menu-line"></i>
+            <span class="ms-1 d-none d-sm-inline">Manage Employees</span>
+          </a>
+        </li>
+        <li class="bg-color-box box-gap">
+          <a routerLink="/company/company-food" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-link px-0 align-middle bg-color bg-color-txt">
+            <i class="ri-community-line"></i>
+            <span class="ms-1 d-none d-sm-inline">Selected Food Types & Weekdays</span></a>
+        </li>
+        
+        <li class="bg-color-box box-gap">
+          <a routerLink="/company/employee-report" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" data-bs-toggle="collapse"
+            class="nav-link px-0 align-middle bg-color bg-color-txt">
+            <i class="ri-calendar-check-fill"></i>
+            <span class="ms-1 d-none d-sm-inline">Employee Food Request Info</span></a>
+          <!-- <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu"></ul> -->
+        </li>
+      </ul>
+    </div>
+  </div>
+  

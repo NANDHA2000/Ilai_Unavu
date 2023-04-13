@@ -1,0 +1,36 @@
+.bg-color {
+  background-color: #ffffff;
+}
+ .cont-scroll{
+  overflow-y: auto;
+} 
+.company-head{
+  font-weight: 600;
+}
+.tablehead {
+  text-align: center;
+}
+.tablebody {
+  text-align: center;
+  background-color: #7FD2AB;
+}
+
+.action-outline{
+  padding-left:5px;
+}
+.modal-footer{
+  border-top: none;
+}
+.modal-header{
+  border-bottom: none;
+}
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .text {
+    font-size: 20px;
+  }
+}
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+  .text {
+    font-size: 22px;
+  }
+}

@@ -1,0 +1,30 @@
+<div class="container-fluid background-foodtype">
+    <div class="row py-5">
+
+        <div class="col-md-9 text-center">
+            <h3>Manage Your Food Menu!</h3>
+            <p>Upload File(JSON)</p>
+            <!-- <form>
+                <input type="file" id="myFile" name="filename"><br>
+                <p class="py-5"> <input class="buttn-submit" type="submit"></p>
+              </form> -->
+            <form [formGroup]="uploadFoodDataForm">
+                <div class="row">
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-8 text-center py-3">
+                        <input class="form-control" formControlName="jsonfile" type="file" accept=".json" (change)="selectFile($event)" />
+                    </div>
+                    <span class="text-danger" style="color: red;" *ngIf="jsonfile && jsonfile.invalid && jsonfile.touched">File Required</span>
+                    <div class="col-md-12 text-center py-3">
+                        <button class="btn buttn-submit" (click)="uploadFoodData(); uploadFoodDataForm.reset()" [disabled]="uploadFoodDataForm.invalid">Upload</button>
+                        <button class="btn btn-clear"><a class="link-deco" title="DownloadJSON" [href]="downloadJsonHref" download="foodlists.json"> Download</a></button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

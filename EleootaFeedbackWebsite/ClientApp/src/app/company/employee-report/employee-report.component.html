@@ -1,0 +1,47 @@
+<div class="reportbody">
+
+    <div class="container dates pt-5">
+        <div class="row text-center">
+            <div><b>Employee Food Request Information</b>
+                <div>
+                </div> <b>Company Name : {{companyDetails.companyName}}</b>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="right-float">
+        <input type="checkbox" name="week" title="Check Next Week Food Request" class="checkbox" (change)="weekChange($event)">
+
+        <label> Check Next Week</label><br>
+    </div>
+
+    <div class="container submit-table mt-5">
+        <table class="table table-color">
+            <thead class="text-center">
+                <tr>
+                    <th scope="col">Days</th>
+                    <th scope="col" class="text-size">Breakfast</th>
+                    <th scope="col" class="text-size">Lunch</th>
+                    <th scope="col" class="text-size">Potluck</th>
+                    <th scope="col" class="text-size">Dinner</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <tr *ngFor="let item of foodCount.data">
+                    <td>{{item.weekdayName}}</td>
+                    <td>{{item.breakfast? item.breakfast : 0}}</td>
+                    <td>{{item.lunch? item.lunch : 0}}</td>
+                    <td>{{item.potLuck ? item.potLuck : 0}}</td>
+                    <td>{{item.dinner? item.dinner : 0}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <div class="text-center mt-5">
+            <!-- <button type="button" class="btn btn-outline-success p-2">
+            Submit Food Request
+        </button> -->
+        </div>
+    </div>
+</div>

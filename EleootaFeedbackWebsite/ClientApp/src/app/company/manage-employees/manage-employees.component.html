@@ -1,0 +1,199 @@
+<div class="reportbody">
+  <div class="container">
+    <h4 class="text-center pt-4 uploadfont">Upload / Download File (Excel)</h4>
+    <div class="row pt-4">
+        <form [formGroup]="uploadExcelForm" class="form-flex">
+      <div class="col-md-1"></div> 
+
+      <div class="col-md-6 py-1 col-sizesearch">
+       
+          <input
+            class="form-control"
+            type="file"
+            formControlName="excelFile"
+            id="upload"
+            accept=".xls,.xlsx"
+            (change)="selectFile($event)"
+            #fileInput
+            required
+          />       
+      </div>
+     
+      <div class="col-md-2 py-1 col-size padding-start">
+        <button class="btn btn-color "
+        (click)="uploadEmpExcel(); uploadExcelForm.reset()"
+        [disabled]="uploadExcelForm.invalid">Upload Excel</button><br>
+        <span
+          class="text-danger alert"
+          style="color: red"
+          *ngIf="excelFile && excelFile.invalid && excelFile.touched">File Required</span>
+      </div>
+
+      <div class="col-md-2 col-size py-1">
+        <button class="btn btn-color">
+          <a class="link-deco"
+            title="Download Excel"
+            href="../../../assets/sampleExcelfile/Employeelist.xlsx">Download Excel</a>
+        </button>
+      </div>
+    </form>
+      <!-- <div>
+        <h4 class="alert-success my-4"></h4>
+      </div> -->
+
+      <div class="container cont-scroll pt-5">
+        <div class="row">
+          <div class="col-12">
+            <div class="col-12 bg-color">
+              <table class="table table-striped table-hover">
+                <thead>
+                  <tr class="tablehead">
+                    <th scope="col">User Id</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Email Id</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody class="tablebody">
+                  <tr
+                    *ngFor="
+                      let item of empData.data
+                        | paginate: { itemsPerPage: 25, currentPage: p };
+                      let i = index
+                    "
+                    class="text"
+                  >
+                    <td>{{ item.empid }}</td>
+                    <td>{{ item.empName }}</td>
+                    <td>{{ item.empMail }}</td>
+                    <td>
+                      <button
+                        class="btn btn-outline-success"
+                        (click)="editEmployee(item.empid)"
+                        type="button"
+                        id="addbtn"
+                        data-bs-toggle="modal"
+                        data-bs-target="#exampleModalEdit"
+                      >
+                        <i class="ri-pencil-fill"></i>
+                      </button>
+                      <span class="action-outline">
+                        <button
+                          class="btn btn-outline-danger"
+                          (click)="deleteEmployeebyId(item.empid)"
+                          type="button"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModalDelete"
+                        >
+                          <i class="ri-delete-bin-fill"></i></button
+                      ></span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
+  </div>
+</div>
+
+<!-- Employee edit modal -->
+
+<div
+  class="modal fade"
+  id="exampleModalEdit"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Employee Name</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+
+      <form [formGroup]="editemployeeInfo">
+        <div class="modal-body">
+          <div class="inputdiv py-1">
+            <input
+              class="form-control"
+              type="text"
+              formControlName="employeeName"
+              [(ngModel)]="empName"
+              name="companyName"
+              maxlength="50"
+              placeholder="employeeName"
+              required
+            />
+            <span
+              class="text-danger"
+              style="color: red"
+              *ngIf="
+                employeeName && employeeName.invalid && employeeName.touched
+              "
+              >Employee Name Required</span
+            >
+          </div>
+          <div class="inputdiv py-1">
+            <input
+              class="form-control"
+              type="email"
+              maxlength="50"
+              formControlName="employeeEmail"
+              [(ngModel)]="empMail"
+              name="companyMail"
+              placeholder="employeeEmail"
+              pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+              required
+            />
+            <!-- <span
+              class="text-danger"
+              style="color: red"
+              *ngIf="
+                employeeEmail && employeeEmail.invalid && employeeEmail.touched
+              "
+              >Email required</span> -->
+
+
+            <span class="text-danger" style="color: red;"
+            *ngIf="!specialCharacter && employeeEmail && employeeEmail.errors && employeeEmail.touched">Please enter valid email</span>
+
+            <span class="text-danger" style="color: red;" *ngIf="specialCharacter && employeeEmail">
+              Sorry, only letters (a-z), numbers (0-9), and characters ( . - _ ) are allowed.
+            </span>
+
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button
+            class="btn btn-success"
+            data-bs-dismiss="modal"
+            (click)="
+              editEmployeedata(editemployeeInfo.value);
+              getEmplist(this.companyDetails.companyId)
+            "
+            [disabled]="editemployeeInfo.invalid"
+          >
+            Update
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

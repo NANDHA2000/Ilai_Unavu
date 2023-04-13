@@ -1,0 +1,176 @@
+<nav class="navbar navbar-expand-lg navclass sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="https://eleoota.com/">
+            <img src="../../../assets/login/eleootalogo.png" alt="navlogo" width="80" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="ri-menu-line menu-color"></i></span>
+    </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h3 class="title">Ele Oota</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="row login-section">
+    <div class="col-md-6 banner-img">
+        <img src="../../../assets/login/Login-eleootas.png" alt="banner image" class="img-fluid img-login" draggable="false" />
+    </div>
+    <div class="col-md-6 main-backgroundcolor text-center">
+        <div class="email-input">
+            <img src="../../../assets/login/eleootalogo.png" alt="logo-center" class="img-fluid" />
+        </div>
+        <h2 class="label-size">Welcome to <b>Ele Oota!</b></h2>
+        <form [formGroup]="loginForm">
+            <div class="row">
+                <div class="col-md-12 pt-5">
+                    <label for="exampleFormControlInput1" class="form-label">Enter Email Address</label
+          >
+          <input
+            type="text"
+            formControlName="email"
+            class="form-control input-element"
+            id="exampleFormControlInput1"
+            placeholder="name@example.com"
+            pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+          />
+
+
+          <span class="text-danger" style="color: red;"
+          *ngIf="email && email?.errors && email.touched && !specialCharacter">
+          Enter valid email address
+      </span>
+      <span class="text-danger" style="color: red;"
+          *ngIf="specialCharacter && email" >
+           Sorry, only letters (a-z), numbers (0-9), and characters ( . - _ ) are allowed.
+      </span>
+      
+        </div>
+        <div class="col-md-12">
+          <button  class="btn p-2 submit-btn"
+
+          data-bs-target="#OTPsection"
+          (click)="sendOtp(loginForm.value)"
+          aria-required="true"
+          (click)="startTimer()"
+          [disabled]="loginForm.invalid">
+           Login
+        </ button>
+        </div>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col-md-12 text-center items-flex">
+        <h5 class="marginpara">Follow us on</h5>
+        <div class="ico-colors">
+          <a
+            href="https://www.youtube.com/channel/UC-DDaSyrDlJIJkkOeLJ8Bcw"
+            target="_blank"
+            class="socialmedia"
+            ><span class="gap-ico"><i class="ri-youtube-line"></i></span
+          ></a>
+          <a
+            href="https://www.facebook.com/eleootaOfficial"
+            target="_blank"
+            class="socialmedia"
+            ><span class="gap-ico"><i class="ri-facebook-fill"></i></span
+          ></a>
+          <a
+            href="https://www.instagram.com/eleoota/"
+            target="_blank"
+            class="socialmedia"
+            ><span class="gap-ico"><i class="ri-instagram-line"></i></span
+          ></a>
+          <a
+            href="https://www.linkedin.com/company/ele-oota"
+            target="_blank"
+            class="socialmedia"
+            ><span class="gap-ico"><i class="ri-linkedin-fill"></i></span
+          ></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: displayStyle }"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form [formGroup]="verifyForm">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h5 class="modal-title w-100" id="exampleModalLabel">
+              Enter The OTP
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              (click)="closePopup()"
+            ></button>
+          </div>
+          <div class="modal-body text-center">
+            <div class="card py-5 px-3">
+              <h5 class="m-0 w-100">OTP verification</h5>
+              <span class="mdl-text w-100">
+                Enter the code we just send on your registered email
+                <br />
+                <b class="text-success">{{ this.emailID }}</b>
+              </span>
+              <div class="d-flex flex-row py-5 ps-5">
+                <ng-otp-input
+                  (onInputChange)="onOtpChange($event)"
+                  [config]="{ length: 6 ,allowNumbersOnly:true}"
+
+
+                >
+                </ng-otp-input>
+              </div>
+              <p class="secondsleft" [ngStyle]="{ display: displayTimer }">{{ timeLeft }} Seconds Left....</p>
+              <div class="text-center">
+                <span class="d-block mobile-text">
+                  Didn't receive the OTP?
+                </span>
+                <span class="font-weight-bold text-success cursor">
+                  <button
+                    [disabled]="boolotp"
+                    (click)="sendOtp(loginForm.value)"
+                    (click)="startTimer()"
+
+                  >
+                    Resend OTP
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer align-self-center">
+            <button
+
+              type="button"
+              class="btn btn-outline-success p-2"
+              data-bs-toggle="modal"
+              (click)="verifyOtp(verifyForm.value)"
+
+
+
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

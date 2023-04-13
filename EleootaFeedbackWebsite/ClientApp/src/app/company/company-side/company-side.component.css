@@ -1,0 +1,45 @@
+.bg-color {
+  background-color: 	#198754;
+  color: white;
+    border-top: 1px solid;
+}
+
+.bg-color-box a {
+  display: flex;
+  align-items: baseline;
+
+}
+.box-gap{
+  padding: 0.2rem 0rem 0.2rem 0rem!important;
+}
+
+.navbar-color {
+  background-color:	#198754;
+  /* border-top: 1px solid white; */
+}
+
+.nav-pills .nav-link {
+  padding: 15px 20px !important;
+}
+
+.nav-pills .nav-link {
+  border: 0;
+  border-radius: 0.25rem;
+}
+
+.align-items-sm-start {
+  align-items: flex-start !important;
+}
+
+li > a.active{
+  color: 	#198754;
+  background-color: #ffffff;
+}
+li i {
+  padding-right: 5px;
+}
+@media screen and (min-width: 250px) and (max-width: 600px) {
+.company-size{
+  font-size:12px;
+}
+}

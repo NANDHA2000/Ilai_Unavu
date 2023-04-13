@@ -1,0 +1,156 @@
+
+.content{
+  overflow: hidden;
+
+}
+.feedbackhead{
+  font-weight: 600;
+  padding: 0rem 14rem 0rem 0rem;
+}
+.emoji-btn{
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.emoji-btn + .emoji{
+  cursor: pointer;
+}
+.emoji-btn{
+  outline: none;
+}
+.input-box{
+  width: 600px;
+}
+.submit-btn{
+ width: 300px;
+ background-color:  #198754;
+ border-radius: 25px;
+ outline-offset: none;
+ outline: none;
+ border: none;
+ margin-left: 40px;
+}
+.emoji{
+  width: 30px;
+  height: 30px;
+}
+.form-check-inline:checked~.form-check-label::before {
+  color: #fff;
+  border-color: #7B1FA2;
+}
+.form-check-inline:checked~.form-check-label::before {
+  background-color: #198754;
+}
+.foodList li{
+  padding: 10px 0px;
+}
+/* .menu{
+  width: 300px;
+} */
+.daybtn {
+  background-color:#198754;
+  color: white;
+  padding: 16px;
+  width: 200px;
+  font-size: 16px;
+  border: none;
+  margin: 10px 30px 10px 20px;
+  float: left;
+}
+
+
+.radio-btn{
+  margin: 30px 20px ;
+}
+.ticksize{
+ font-size: 15px;
+  color: #198754;
+}
+.colone-width{
+  width: 40%!important;
+   /* text-align: center;  */
+  background-color: #fff;
+}
+.subcol-width{
+  width: 20%!important;
+ /* text-align: center;   */
+  background-color: #fff;
+}
+ .fixTableHead thead th {
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+}
+.fixTableHead {
+  overflow-y: auto;
+  height: 600px;
+  background-color: #fff!important;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.colorstar{
+  color: red;
+}
+.para-border{
+  font-weight: 600;
+}
+
+.required:after{
+  content:" *";
+    color: red;
+}
+
+.modalpop{
+  text-align: center;
+  font-size:31px;
+  color: green;
+}
+.modal-content{
+  background-color:#fff ;
+}
+@media screen and (min-width: 250px) and (max-width: 600px) {
+  .feedbackhead{
+    padding: 1rem;
+  }
+  .colone-width{
+    font-size: 10px;
+  }
+  .subcol-width{
+    font-size: 10px;
+  }
+  .container-fluid{
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .input-box{
+    width: 100%;
+    padding: 0rem 1rem;
+  }
+  .form-floating>label{
+    padding: 1rem 2rem;
+  }
+  .buttondiv{
+    padding: 1rem 1rem;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 1200px) {
+  .container-fluid{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+.feedbackhead{
+  padding: 1rem 2rem 1rem 1rem;
+}
+.input-box{
+  width: 100%;
+  padding: 0rem 1rem;
+}
+.form-floating>label{
+  padding: 1rem 2rem;
+}
+.buttondiv{
+  padding: 1rem 1rem;
+}
+}

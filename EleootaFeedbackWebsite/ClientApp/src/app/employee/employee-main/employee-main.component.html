@@ -1,0 +1,66 @@
+<app-employee-nav></app-employee-nav>
+<div class="employee-body">
+  <div class="container dates pt-5">
+    <h5 class="text-center py-3 emp">
+      Hi {{ employeeDetails.empName }}, Help us in Optimizing Food Wastage at
+      {{ employeeDetails.companyName }}.
+    </h5>
+    <div class="row text-center">
+      <div><b>Upcoming Week</b></div>
+      <!-- <div class="col-md-6">
+        <b> FROM :</b> {{today | date:"dd-MMM-yyyy"}}
+      </div>
+      <div class="col-md-6">
+        <b> TO :</b> {{dateee | date:"dd-MMM-yyyy"}}
+      </div> -->
+    </div>
+  </div>
+
+  <form class="container submit-table mt-5" #employeeForm>
+    <table class="table table-color">
+      <thead class="text-center">
+        <th>Days</th>
+        <th
+          *ngFor="let item of FoodDaysData.companyFoodTypesOrder; let j = index"
+        >
+          {{ item.foodTypes }}
+        </th>
+      </thead>
+      <tbody class="text-center">
+        <tr
+          *ngFor="
+            let data of FoodDaysData.companyFoodWeekDaysOrder;
+            let i = index
+          "
+        >
+          <th>{{ data.weekDayName }}</th>
+          <td
+            *ngFor="
+              let item of FoodDaysData.companyFoodTypesOrder;
+              let j = index
+            "
+          >
+            <input
+              type="checkbox"
+              id="{{ item.foodtypeID }}"
+              name="{{ item.foodTypes }}"
+              formControlName="input-check"
+              value="{{ data.weekDayId }}"
+              (click)="foodSelectionChanged($event)"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="text-center mt-5">
+      <button
+        type="button"
+        class="btn btn-outline-success p-2"
+        [disabled]="bool"
+        (click)="submitFoodRequest(); employeeForm.reset()"
+      >
+        Submit Food Request
+      </button>
+    </div>
+  </form>
+</div>

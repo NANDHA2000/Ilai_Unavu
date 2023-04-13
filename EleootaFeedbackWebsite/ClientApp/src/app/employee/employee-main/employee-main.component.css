@@ -1,0 +1,25 @@
+.employee-body {
+  background-image: linear-gradient(to right, #fef098, white);
+  height: 100vh;
+}
+.table-color {
+  background-color: #7fd2ab;
+}
+.emp {
+  font-weight: 600;
+}
+
+/* @media screen and (min-width: 250px) and (max-width: 600px) {
+    .text-size{
+        font-size: 13px;
+    }
+    table > th{
+        padding: 0px;
+    }
+    table > th > td{
+        padding: 0px;
+    }
+    .col-size{
+        font-size: 15px;
+    }
+} */

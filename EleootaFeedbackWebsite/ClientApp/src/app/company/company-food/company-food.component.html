@@ -1,0 +1,32 @@
+
+<div class="background-foodtype">
+    <div class="container">
+      <form>
+        <div class="row py-5">
+          <div class="col-md-6 float-rights">
+            <h3 class="box-heading">Selected Food Types</h3>
+            <ul style="list-style: none;">
+              <li *ngFor="let item of companyFoodTypesOrder">
+                {{item.foodTypes}}
+              </li>
+            </ul>
+          </div>
+         <!-- Weekdays division......................................... ..........-->
+          <div class="col-md-6 float-secondgap">
+            <h3 class="box-heading">Selected Weekdays</h3>
+
+
+            <ul style="list-style: none;">
+              <li *ngFor="let item of companyFoodWeekDaysOrder">
+                {{item.weekDayName}}
+              </li>
+            </ul>
+
+
+
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

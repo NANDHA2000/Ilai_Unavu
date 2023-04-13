@@ -1,0 +1,165 @@
+<div class="col-12">
+  <div class="container-fluid bg-color">
+    <div class="row">
+      <div class="col-md-4 py-3">
+        <a class="navbar-brand">
+          <button type="button" class="btn btn-success" id="addbtn" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            Add
+          </button>
+        </a>
+      </div>
+      <div class="col-md-8 py-3">
+        <h3 class="company-head">Manage Companies</h3>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid py-0 cont-scroll">
+    <div class="row">
+      <div class="col-12 px-0">
+        <div class="col-12 bg-color">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr class="tablehead">
+                <th scope="col">Serial No</th>
+                <th scope="col">Company Name</th>
+                <th scope="col">Company Email</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody class="tablebody">
+              <tr *ngFor="let item of companylist ;let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ item.companyName }}</td>
+                <td>{{ item.companyMail }}</td>
+                <td>
+                  <span>
+                    <button class="btn btn-outline-success" (click)="editCompany(item.companyId, item.companyStatus)"
+                      type="button" id="addbtn" data-bs-toggle="modal" data-bs-target="#exampleModalEdit">
+                      <i class="ri-pencil-fill"></i></button></span>
+                  <span class="action-outline">
+                    <button class="btn btn-outline-danger"
+                      (click)="confirmModal(item.companyId,item.companyName,item.companyMail)" type="button"
+                      data-bs-toggle="modal" data-bs-target="#exampleModalDelete">
+                      <i class="ri-delete-bin-fill"></i></button></span>
+
+                  <!-- Company Delete Confirmation Modal -->
+                  <div class="modal fade" id="exampleModalDelete" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="p-3">
+                          <p>Are You Sure, You Want To Delete The Company ?</p>
+                        </div>
+
+                        <div class=" text-center p-2">
+                          <button type="button" class="btn btn-danger me-3" data-bs-dismiss="modal">
+                            Close
+                          </button>
+                          <button class="btn btn-success " data-bs-dismiss="modal"
+                            (click)="deleteCompany(item.companyId,item.companyName,item.companyMail)">
+                            Confirm
+                          </button>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Add company  Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Company Name</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form [formGroup]="companyform" (ngSubmit)="getCompanyListData(companyform.value); companyform.reset()">
+        <div class="modal-body">
+          <div class="inputdiv py-1">
+            <input class="form-control" type="text" formControlName="companyFormName" name="Name" maxlength="51"
+              placeholder="Enter Company name" required />
+            <span class="text-danger" style="color: red;"
+              *ngIf="companyFormName && companyFormName.invalid && companyFormName.touched">Enter company name</span>
+          </div>
+
+          <div class="inputdiv py-1">
+            <input class="form-control" type="email" formControlName="email" name="email" maxlength="50"
+              placeholder="Enter Company Email"
+              pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+              required />
+            <span class="text-danger" style="color: red;" *ngIf="!specialCharacter && email && email.invalid && email.touched">Please enter valid email</span>
+
+            <span class="text-danger" style="color: red;" *ngIf="specialCharacter && email">
+              Sorry, only letters (a-z), numbers (0-9), and characters ( . - _ ) are allowed.
+            </span>
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button class="btn btn-success" data-bs-dismiss="modal" [disabled]="companyform.invalid">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Company edit modal -->
+<div class="modal fade" id="exampleModalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Company Name</h5>
+        <button type="button" class="btn-close" data-bs-toggle="modal" aria-label="Close"></button>
+      </div>
+      <form [formGroup]="editCompanyInfo" (ngSubmit)="
+          editCompanyData(editCompanyInfo.value); editCompanyInfo.reset()
+        ">
+        <div class="modal-body">
+          <div class="editdiv py-1">
+            <input class="form-control" type="text" formControlName="companyInfoName" name="companyName" maxlength="50"
+              placeholder="Enter Company name" required />
+            <span class="text-danger" style="color: red;"
+              *ngIf="companyInfoName && companyInfoName.invalid && companyInfoName.touched">Company Name Required</span>
+          </div>
+          <div class="editdiv py-1">
+            <input class="form-control" type="email" maxlength="50" formControlName="companyInfoEmail"
+              name="companyMail" placeholder="Enter Company Email"
+              pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+              required />
+            <span class="text-danger" style="color: red;"
+              *ngIf="!specialCharacter2 && companyInfoEmail && companyInfoEmail.errors && companyInfoEmail.touched">Please enter valid email</span>
+
+              <span class="text-danger" style="color: red;" *ngIf="specialCharacter2 && companyInfoEmail">
+                Sorry, only letters (a-z), numbers (0-9), and characters ( . - _ ) are allowed.
+              </span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button class="btn btn-success" data-bs-dismiss="modal" [disabled]="editCompanyInfo.invalid">
+            Update
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

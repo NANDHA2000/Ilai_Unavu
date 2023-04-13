@@ -1,0 +1,40 @@
+.reportbody {
+    background-image: linear-gradient(#FEF098, white);
+    height: 100vh;
+}
+
+.table-color {
+    background-color: #7FD2AB;
+}
+
+.right-float {
+    float: right;
+    padding-right: 33px;
+}
+
+.checkbox {
+    margin-right: 5px;
+}
+
+@media screen and (min-width: 250px) and (max-width: 600px) {
+    .container {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    .row>* {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    .text-size {
+        font-size: 10px!important;
+    }
+    table>th {
+        padding: 0px!important;
+    }
+    table>th>td {
+        padding: 0px!important;
+    }
+    .col-size {
+        font-size: 15px!important;
+    }
+}

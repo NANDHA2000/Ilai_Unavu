@@ -1,0 +1,35 @@
+.background-foodtype{
+    /* background-image: linear-gradient(skyblue, yellow);   */
+    /* background-image: linear-gradient(#B2DB98, white); */
+    background-image: linear-gradient(to right,#FEF09A,white);
+    height: 100vh;
+}
+.buttn-submit{
+    width: fit-content;
+    background-color:white;
+    color: #198754;
+    font-weight: 600;
+    border-radius: 25px; 
+    padding: 5px 30px;
+    margin: 10px; 
+}
+.buttn-submit:hover{
+    background-color:#198754!important;
+    color: white;
+}  
+.btn-clear{
+    width: fit-content;
+    background-color:white;
+    color: #198754;
+    font-weight: 600;
+    border-radius: 25px; 
+    padding: 5px 22px; 
+    margin: 10px; 
+}
+.link-deco{
+    text-decoration: none;
+    color: #198754;
+}
+@media only screen and (min-width: 250px) and (max-width: 600px) {
+   
+}

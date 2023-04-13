@@ -1,0 +1,54 @@
+.nav-img {
+  width: 80px !important;
+
+}
+.navclass{
+  color: white;
+  background-color: #198754;
+  box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+}
+.menu-color{
+  color: white;
+}
+.logoutico{
+  font-size: 40px;
+  color: white;
+}
+.btn-outline-success{
+  color: white!important;
+}
+
+.eleoota-head
+{
+  /* font-size: 1.5rem;
+  max-width: 36ch; */
+  word-wrap: break-word;
+  /* width : 497px; */
+  font-weight: 600;
+}
+
+.content-match
+{
+  /* max-width: 19ch; */
+  word-wrap: break-word;
+  /* width: 177px; */
+  white-space: normal;
+}
+
+@media screen and (min-width: 250px) and (max-width: 600px) {
+  .align-company{
+    text-align: center;
+  }
+  .align-datetime{
+    display: none;
+  }
+.buttonfloat{
+  float: right;
+}
+}
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+  .buttonfloat{
+    float: right;
+  }
+ 
+}

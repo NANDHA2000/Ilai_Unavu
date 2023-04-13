@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navclass">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/admin" >
+        <img draggable="false" class="nav-img" src="../../../assets/eleootalogo.png" alt="ele-oota-logo" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="ri-menu-line menu-color"></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+          <div class="container">
+            <div class="row">
+              <div class="col-md-3">
+
+              </div>
+            <div class="col-md-6 text-center">
+                <!-- <h2 class="eleoota-head ">WELCOME TO ELEOOTA DASHBOARD</h2> -->
+                <h2 class="eleoota-head ">Welcome To Ele Oota DashBoard</h2>
+                <h5 >Where you can manage companies, foodtypes and foodmenus in one click</h5>
+                 <!-- <h6 class="eleoota-head">WHERE YOU CAN MANAGE COMPANIES, FOODTYPES AND FOODMENUS IN ONE CLICK </h6> -->
+            </div>
+            <div class="col-md-3 pt-2">
+              <p class="textdate">Date : {{ time | date: 'dd:MM:YYYY' }}</p>
+              <p class="textdate">Time : {{ rxTime | date: 'hh:mm:ss a' }}</p>
+            </div>
+        </div>
+          </div>
+
+
+          <div class="d-flex buttonfloat">
+            <button routerLink="/home" class="btn btn-outline-white" type="submit" (click)="logoutSession()"><i class="ri-logout-circle-r-line logoutico"></i><br>Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+

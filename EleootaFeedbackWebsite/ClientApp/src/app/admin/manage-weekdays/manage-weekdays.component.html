@@ -1,0 +1,76 @@
+<div class="background-foodtype">
+  <div class="container">
+    <form [formGroup]="FoodTypeByWeekDaysOrder">
+      <div class="row py-5">
+        <!-- .........................................Dropdown for companies........................................ -->
+        <div class="col-md-4 column-height">
+          <div class="dropdown">
+            <select class="dropbtn box-padding" id="radi" (change)="getCompanyName($event)" formControlName="companyId">
+              <option value="" disabled="Disabled" selected="">Select Company Name</option>
+              <option *ngFor="let item of companyList" value="{{item.companyId}}">{{item.companyName}}</option>
+            </select>
+            <span class="text-danger" style="color: red;" *ngIf="companyId && companyId.invalid && companyId.touched  ">
+              select company name
+            </span>
+          </div>
+        </div>
+        <!-- .........................................Food Types Division........................................ -->
+
+        <div class="col-md-4" [formGroup]="companyFoodTypesOrder">
+
+          <p class="box-heading">Manage Food Types</p>
+          <input class="inputbox" type="checkbox" id="breakfast" name="breakfast" value="tiffin"
+            (change)="foodTypeChanged($event)" formControlName="breakfast" />
+
+          <label class="foodtext" for="breakfast">&nbsp;&nbsp;Breakfast</label><br />
+          <input class="inputbox" type="checkbox" id="lunch" name="lunch" value="rice"
+            (change)="foodTypeChanged($event)" formControlName="lunch" />
+          <label for="lunch">&nbsp;&nbsp;Lunch</label><br />
+          <input class="inputbox" type="checkbox" id="potluck" name="potluck" value="samosa"
+            (change)="foodTypeChanged($event)" formControlName="potluck" />
+          <label class="foodtext" for="potluck">&nbsp;&nbsp;Potluck</label><br />
+          <input class="inputbox" type="checkbox" id="dinner" name="dinner" value="chapati"
+            (change)="foodTypeChanged($event)" formControlName="dinner" />
+          <label class="foodtext" for="dinner">&nbsp;&nbsp;Dinner</label><br /><br />
+
+        </div>
+
+        <!-- .........................................Weekdays division......................................... -->
+        <div class="col-md-4" [formGroup]="companyFoodWeekDaysOrder">
+
+          <p class="box-heading">Manage Weekdays</p>
+          <input class="inputbox" type="checkbox" id="monday" name="monday" value="day1"
+            (change)="weekdayChanged($event)" formControlName="monday" />
+          <label class="foodtext" for="monday">&nbsp;&nbsp;Monday</label><br />
+          <input class="inputbox" type="checkbox" id="tuesday" name="tuesday" value="day2"
+            (change)="weekdayChanged($event)" formControlName="tuesday" />
+          <label class="foodtext" for="tuesday">&nbsp;&nbsp;Tuesday</label><br />
+          <input class="inputbox" type="checkbox" id="wednesday" name="wednesday" value="day3"
+            (change)="weekdayChanged($event)" formControlName="wednesday" />
+          <label class="foodtext" for="wednesday">&nbsp;&nbsp;Wednesday</label><br />
+          <input class="inputbox" type="checkbox" id="thursday" name="thursday" value="day4"
+            (change)="weekdayChanged($event)" formControlName="thursday" />
+          <label class="foodtext" for="thursday">&nbsp;&nbsp;Thursday</label><br />
+          <input class="inputbox" type="checkbox" id="friday" name="friday" value="day5"
+            (change)="weekdayChanged($event)" formControlName="friday" />
+          <label class="foodtext" for="friday">&nbsp;&nbsp;Friday</label><br />
+          <input class="inputbox" type="checkbox" id="saturday" name="saturday" value="day6"
+            (change)="weekdayChanged($event)" formControlName="saturday" />
+          <label for="saturday">&nbsp;&nbsp;Saturday</label><br />
+          <input class="inputbox" type="checkbox" formControlName="sunday" (change)="weekdayChanged($event)" id="sunday"
+            name="sunday" value="day7" />
+
+          <label for="sunday">&nbsp;&nbsp;Sunday</label><br />
+
+        </div>
+
+
+        <p class="gap-button text-center py-5">
+          <input id="btn" class="submit-width" type="button" value="Submit" (click)="submitFood();" />
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- [disabled]="toggleBoolone || toggleBool || weekDayForm.invalid" -->
